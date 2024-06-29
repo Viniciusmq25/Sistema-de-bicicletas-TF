@@ -2,32 +2,18 @@ import java.util.Scanner;
 
 public class MenuAddBike {
     
-    public static void menuAddMembro(CadastroMembro cm) {
-        Scanner inp = new Scanner(System.in);
-        
-        Membro membro = new Membro(0, "", "", 0);
+    public static void menuAddBike(CadastroBicicleta cb) {
+        Scanner scanner = new Scanner(System.in);
+        System.out.println("Digite o código da bicicleta:");
+        int codigo = scanner.nextInt();
+        scanner.nextLine(); // Consome a nova linha
+        System.out.println("Digite o modelo da bicicleta:");
+        String modelo = scanner.nextLine();
+        System.out.println("Digite a quantidade de unidades da bicicleta:");
+        int quantidadeUnidades = scanner.nextInt();
 
-        System.out.println("digite o nome do membro: ");
-        membro.setNome(inp.nextLine());
+        Bicicleta bicicleta = new Bicicleta(codigo, modelo, quantidadeUnidades);
 
-        App.espaco();
-        System.out.println("digite a matricula do membro: ");
-        membro.setMatricula(inp.nextInt());
-
-        inp.nextLine();
-
-        App.espaco();
-        System.out.println("digite a cidade de origem do membro: ");
-        membro.setCidadeDeOrigem(inp.nextLine());
-
-        if (cm.adicionaMembro(membro)) {
-            App.espaco();
-            System.out.println("Membro adicionado!!");
-        } else {
-            App.espaco();
-            System.out.println("membro nao adicionado, sistema cheio.");
+        cb.adicionaBicicleta(bicicleta);
         }
-
-        
-    }
-}
+  }

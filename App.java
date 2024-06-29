@@ -1,23 +1,29 @@
 import java.util.Scanner;
 
 public class App{
+
+  
+      private static Scanner inp = new Scanner(System.in);
+      private static CadastroMembro cm = new CadastroMembro();
+      private static CadastroBicicleta cb = new CadastroBicicleta();
+
     public static void main(String[] args) {
-        Scanner inp = new Scanner(System.in);
-        CadastroMembro cm = new CadastroMembro();
         int numMenu = 0;
 
         do{
+            espaco();
+            espaco();
             System.out.println("****************MENU***************");
             System.out.println("BEM-VINDO AO CLUBE DE COMPARTILHAMENTO DE BICICLETAS DE PORTO ALEGRE!");
             System.out.println("1 - Adicionar membros");
             System.out.println("2 - Mostrar Membros");
             System.out.println("3 - Pesquisar membro por nome");
-            System.out.println("4 - incluir bicicleta ao sistema");
+            System.out.println("4 - incluir bicicletas ao sistema");
             System.out.println("5 - Ver Bikes disponiveis");
             System.out.println("6 - Pesquisar bicicleta por modelo");
             System.out.println("7 - Emprestar bicicleta");
             System.out.println("8 - Devolver bicicleta");
-            System.out.println("9 - Quantidade total de unidades disponiceis no sistema de empréstimo");
+            System.out.println("9 - Quantidade total de unidades disponiveis no sistema de empréstimo");
             System.out.println("10 - Sair");
 
             numMenu = inp.nextInt();
@@ -29,34 +35,31 @@ public class App{
                     espaco();
                     break;
                 case 2:
-                    espaco();
                     cm.mostraMembros();
                     espaco();
                     break;
                 case 3:  
-                    inp.nextLine();
-                    System.out.println("Digite o nome do membro: ");
-                    String nomeM = inp.nextLine();
-                    cm.pesquisaMembro(cm.getMembro(), nomeM);
+                    pesquisarMembro();
                     break;
-                case 4:  
-                    
+                case 4: 
+                    espaco();
+                    MenuAddBike.menuAddBike(cb);
+                    espaco();
                     break;
-                case 5:  
-                    //CadastroMembro.mostraBikes
+                case 5:
+                    cb.mostraBikes();
                     break;
                 case 6:  
-                    //CadastroBike.PesquisaBike
+                    pesquisarBicicleta();
                     break;
                 case 7:
-                    //tirar uma bike disponivel e adicionar uma bike ao membro  
+                    emprestarBicicleta();
                     break;
                 case 8:  
-                    //tirar a bike do membro e adicionar ao banco de bikes
-                    //
+                    devolverBicicleta();
                     break;
                 case 9:  
-                    //quantidade de bikes disponiveis 
+                    mostrarTotalUnidades();
                     break;
                 case 10: 
     
@@ -77,4 +80,68 @@ public class App{
     public static void espaco(){
         System.out.println("");
     }
+
+    private static void pesquisarBicicleta() {
+      inp.nextLine();
+      System.out.println("Digite o modelo da bicicleta:");
+      String modelo = inp.nextLine();
+      Bicicleta bicicleta = cb.buscaBicicletaPeloModelo(modelo);
+      if (bicicleta != null) {
+          System.out.println("Código: " + bicicleta.getCodigo() + ", Modelo: " + bicicleta.getModelo() + ", Quantidade: " + bicicleta.getQuantidadeUnidades());
+      } else {
+          System.out.println("Bicicleta não encontrada.");
+      }
+  }
+
+  private static void pesquisarMembro() {
+    System.out.println("Digite o nome do membro:");
+    String nome = inp.nextLine();
+    Membro membro = cm.pesquisaMembro(nome);
+    if (membro != null) {
+        System.out.println("Matrícula: " + membro.getMatricula() + ", Nome: " + membro.getNome() + ", Cidade de Origem: " + membro.getCidadeDeOrigem());
+    } else {
+        System.out.println("Membro não encontrado.");
+    }
+  }
+
+  private static void emprestarBicicleta() {
+    System.out.println("Digite a matrícula do membro:");
+    int matricula = inp.nextInt();
+    inp.nextLine(); // Consome a nova linha
+    Membro membro = cm.pesquisaMembro(String.valueOf(matricula));
+
+    if (membro != null && membro.getBicicletaEmprestada() == null) {
+        System.out.println("Digite o modelo da bicicleta:");
+        String modelo = inp.nextLine();
+        Bicicleta bicicleta = cb.buscaBicicletaPeloModelo(modelo);
+
+        if (bicicleta != null && bicicleta.emprestar()) {
+            membro.setBicicletaEmprestada(bicicleta);
+            System.out.println("Bicicleta emprestada com sucesso!");
+        } else {
+            System.out.println("Não há bicicletas disponíveis para empréstimo.");
+        }
+    } else {
+        System.out.println("Membro não encontrado ou já possui uma bicicleta emprestada.");
+    }
+  }
+
+  private static void devolverBicicleta() {
+    System.out.println("Digite a matrícula do membro:");
+    int matricula = inp.nextInt();
+    inp.nextLine(); // Consome a nova linha
+    Membro membro = cm.pesquisaMembro(String.valueOf(matricula));
+
+    if (membro != null && membro.getBicicletaEmprestada() != null) {
+        membro.getBicicletaEmprestada().devolver();
+        membro.setBicicletaEmprestada(null);
+        System.out.println("Bicicleta devolvida com sucesso!");
+    } else {
+        System.out.println("Membro não encontrado ou não possui bicicleta emprestada.");
+    }
+  }
+
+  private static void mostrarTotalUnidades() {
+    System.out.println("Quantidade total de unidades disponíveis: " + cb.totalUnidades());
+}
 }

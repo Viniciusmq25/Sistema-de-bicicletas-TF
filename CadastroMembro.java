@@ -1,24 +1,31 @@
 public class CadastroMembro {
-    private Membro [] vetor;
+    private Membro [] membros;
     private int index;
 
     public CadastroMembro(){
-        vetor = new Membro[10];
+        membros = new Membro[10];
         index = 0;
-    }
-
-    public Membro[] getMembro(){
-        return vetor;
     }
 
     public boolean adicionaMembro(Membro m){
         if (index >= 10){
+            System.out.println("cadastro cheio");
             return false;
-        }else{
-            vetor[index] = m;
-            index++;
-            return true;
         }
+
+        for (int i = 0; i < index; i++) {
+          if(m.getMatricula() == membros[i].getMatricula()){
+            App.espaco();
+            System.out.println("matricula ja existente, membro nao adicionado");
+            return false;
+          };
+        }
+
+        membros[index] = m;
+        index++;
+        App.espaco();
+        System.out.println("membro adicionado com sucesso!!");
+        return true;
     }
 
     public void mostraMembros(){
@@ -27,19 +34,18 @@ public class CadastroMembro {
         }else{
             for (int i = 0; i < index; i++){
                 App.divisor();
-                System.out.println(vetor[i].toString());
+                System.out.println(membros[i].toString());
                 App.divisor();
             }
         }
     }
 
-    public void pesquisaMembro(Membro [] m, String nome){
-        for(int i = 0; i< index; i++){
-            if(nome.equalsIgnoreCase(m[i].getNome())){
-                App.espaco();
-                System.out.println(m[i]);
-                App.espaco();
+    public Membro pesquisaMembro(String nome){
+        for (Membro membro : membros) {
+            if (membro != null && membro.getNome().equals(nome)) {
+                return membro;
             }
         }
+        return null;
     }
 }

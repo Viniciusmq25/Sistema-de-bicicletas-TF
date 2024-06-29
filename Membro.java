@@ -2,13 +2,13 @@ public class Membro {
     private int matricula;
     private String nome;
     private String cidadeDeOrigem;
-    private int bicicletas;
+    private Bicicleta bicicletaEmprestada;
 
-    public Membro(int matricula, String nome, String cidadeDeOrigem, int bicicletas){
+    public Membro(int matricula, String nome, String cidadeDeOrigem){
         this.matricula = matricula;
         this.nome = nome;
         this.cidadeDeOrigem = cidadeDeOrigem;
-        this.bicicletas = bicicletas;
+        this.bicicletaEmprestada = null;
     }
 
     public int getMatricula(){
@@ -20,9 +20,10 @@ public class Membro {
     public String getCidadeDeOrigem(){
         return cidadeDeOrigem;
     }
-    public int bicicletas(){
-        return bicicletas;
-    }
+    
+    public Bicicleta getBicicletaEmprestada() {
+      return bicicletaEmprestada;
+  }
 
     public void setMatricula(int matricula){
         this.matricula = matricula;
@@ -36,12 +37,12 @@ public class Membro {
         this.cidadeDeOrigem = cidadeDeOrigem;
     }
 
-    public void setBicicletas(int bicicletas){
-        this.bicicletas = bicicletas;
+    public void setBicicletaEmprestada(Bicicleta bicicletaEmprestada) {
+      this.bicicletaEmprestada = bicicletaEmprestada;
     }
 
     public String toString(){
-        return " Nome: " + nome + "\n Matricula: " + matricula + "\n CidadeDeOrigem: " + cidadeDeOrigem + "\n Bicicletas: " + bicicletas;
+        return "\n Matricula: " + matricula + "\n Nome: " + nome + "\n Cidade de Origem: " + cidadeDeOrigem;
     }
     
 }

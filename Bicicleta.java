@@ -1,13 +1,12 @@
 public class Bicicleta {
     private int codigo;
     private String modelo;
-    private int quantidade;
+    private int quantidadeUnidades;
 
-    public Bicicleta(int codigo, String modelo, int quantidade){
+    public Bicicleta(int codigo, String modelo, int quantidadeUnidades){
         this.codigo = codigo;
         this.modelo = modelo;
-        this.quantidade = quantidade;
-
+        this.quantidadeUnidades = quantidadeUnidades;
     }
 
     public int getCodigo(){
@@ -18,9 +17,9 @@ public class Bicicleta {
         return modelo;
     }
 
-    public int getQuantidade(){
-        return quantidade;
-    }
+    public int getQuantidadeUnidades() {
+      return quantidadeUnidades;
+  }
 
     public void setCodigo(int codigo){
         this.codigo = codigo;
@@ -30,11 +29,22 @@ public class Bicicleta {
         this.modelo = modelo;
     }
 
-    public void setQuantidade(int quantidade){
-        this.quantidade = quantidade;
-    }
+    public void setQuantidadeUnidades(int quantidadeUnidades) {
+      this.quantidadeUnidades = quantidadeUnidades;
+  }
 
+  public boolean emprestar() {
+    if (quantidadeUnidades > 0) {
+        quantidadeUnidades--;
+        return true;
+    }
+    return false;
+  }
+
+  public void devolver() {
+    quantidadeUnidades++;
+  }
     public String toString(){
-        return "\n Codigo: " + codigo + "\n Modelo: " + modelo + "\n Quantidade: " + quantidade;
+        return "\n Codigo: " + codigo + "\n Modelo: " + modelo + "\n Quantidade de Unidades: " + quantidadeUnidades;
     }
 }

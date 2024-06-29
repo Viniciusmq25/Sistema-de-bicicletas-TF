@@ -4,30 +4,20 @@ public class MenuAddMembro {
 
     public static void menuAddMembro(CadastroMembro cm) {
         Scanner inp = new Scanner(System.in);
+
+        System.out.println("Digite a matrícula do membro:");
+        int matricula = inp.nextInt();
         
-        Membro membro = new Membro(0, "", "", 0);
+        inp.nextLine(); 
 
-        System.out.println("digite o nome do membro: ");
-        membro.setNome(inp.nextLine());
+        System.out.println("Digite o nome do membro:");
+        String nome = inp.nextLine();
+        System.out.println("Digite a cidade de origem do membro:");
+        String cidadeOrigem = inp.nextLine();
 
-        App.espaco();
-        System.out.println("digite a matricula do membro: ");
-        membro.setMatricula(inp.nextInt());
+        Membro membro = new Membro(matricula, nome, cidadeOrigem);
 
-        inp.nextLine();
-
-        App.espaco();
-        System.out.println("digite a cidade de origem do membro: ");
-        membro.setCidadeDeOrigem(inp.nextLine());
-
-        if (cm.adicionaMembro(membro)) {
-            App.espaco();
-            System.out.println("Membro adicionado!!");
-        } else {
-            App.espaco();
-            System.out.println("membro nao adicionado, sistema cheio.");
-        }
-
+        cm.adicionaMembro(membro);
         
     }
 

@@ -42,7 +42,7 @@ public class CadastroMembro {
 
     public Membro pesquisaMembro(String nome){
         for (Membro membro : membros) {
-            if (membro != null && membro.getNome().equals(nome)) {
+            if (membro != null && membro.getNome().equalsIgnoreCase(nome)) {
                 return membro;
             }
         }

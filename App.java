@@ -18,7 +18,7 @@ public class App{
             System.out.println("1 - Adicionar membros");
             System.out.println("2 - Mostrar Membros");
             System.out.println("3 - Pesquisar membro por nome");
-            System.out.println("4 - incluir bicicletas ao sistema");
+            System.out.println("4 - Incluir bicicletas ao sistema");
             System.out.println("5 - Ver Bikes disponiveis");
             System.out.println("6 - Pesquisar bicicleta por modelo");
             System.out.println("7 - Emprestar bicicleta");
@@ -109,7 +109,7 @@ public class App{
   private static void emprestarBicicleta() {
     System.out.println("Digite a matrícula do membro:");
     int matricula = inp.nextInt();
-    inp.nextLine(); // Consome a nova linha
+    inp.nextLine();
     Membro membro = cm.pesquisaMemPorMatricula(matricula);
 
     if (membro != null && membro.getBicicletaEmprestada() == null) {
@@ -131,7 +131,7 @@ public class App{
   private static void devolverBicicleta() {
     System.out.println("Digite a matrícula do membro:");
     int matricula = inp.nextInt();
-    inp.nextLine(); // Consome a nova linha
+    inp.nextLine();
     Membro membro = cm.pesquisaMemPorMatricula(matricula);
 
     if (membro != null && membro.getBicicletaEmprestada() != null) {

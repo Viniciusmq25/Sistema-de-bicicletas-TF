@@ -48,4 +48,13 @@ public class CadastroMembro {
         }
         return null;
     }
+
+    public Membro pesquisaMemPorMatricula(int matricula){
+        for (Membro membro : membros) {
+            if (membro != null && membro.getMatricula() ==matricula) {
+                return membro;
+            }
+        }
+        return null;
+    }
 }

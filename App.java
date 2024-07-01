@@ -36,7 +36,6 @@ public class App{
                     break;
                 case 2:
                     cm.mostraMembros();
-                    espaco();
                     break;
                 case 3:  
                     pesquisarMembro();
@@ -94,12 +93,15 @@ public class App{
   }
 
   private static void pesquisarMembro() {
+    inp.nextLine();
     System.out.println("Digite o nome do membro:");
     String nome = inp.nextLine();
     Membro membro = cm.pesquisaMembro(nome);
     if (membro != null) {
+        espaco();
         System.out.println("Matrícula: " + membro.getMatricula() + ", Nome: " + membro.getNome() + ", Cidade de Origem: " + membro.getCidadeDeOrigem());
     } else {
+        espaco();
         System.out.println("Membro não encontrado.");
     }
   }
@@ -108,7 +110,7 @@ public class App{
     System.out.println("Digite a matrícula do membro:");
     int matricula = inp.nextInt();
     inp.nextLine(); // Consome a nova linha
-    Membro membro = cm.pesquisaMembro(String.valueOf(matricula));
+    Membro membro = cm.pesquisaMemPorMatricula(matricula);
 
     if (membro != null && membro.getBicicletaEmprestada() == null) {
         System.out.println("Digite o modelo da bicicleta:");
@@ -130,7 +132,7 @@ public class App{
     System.out.println("Digite a matrícula do membro:");
     int matricula = inp.nextInt();
     inp.nextLine(); // Consome a nova linha
-    Membro membro = cm.pesquisaMembro(String.valueOf(matricula));
+    Membro membro = cm.pesquisaMemPorMatricula(matricula);
 
     if (membro != null && membro.getBicicletaEmprestada() != null) {
         membro.getBicicletaEmprestada().devolver();

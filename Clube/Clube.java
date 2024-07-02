@@ -175,7 +175,7 @@ public class Clube {
             System.out.println("9. Quantidade total de unidades disponíveis no sistema de empréstimo");
             System.out.println("10. Sair do programa");
             opcao = scanner.nextInt();
-            scanner.nextLine(); // Consome a nova linha
+            scanner.nextLine();
 
             switch (opcao) {
                 case 1:

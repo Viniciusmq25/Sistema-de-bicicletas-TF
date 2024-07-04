@@ -1,4 +1,4 @@
-# Trabalho final do primeiro semestre de programação
+# Disciplina de Fundamentos de Programação, Trabalho Final - TF
 
     Feito por: 
     Membro  membro1 = new membro {"Vinicius Quintian", 24105104}

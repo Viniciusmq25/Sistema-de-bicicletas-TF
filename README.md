@@ -1,9 +1,9 @@
 # Disciplina de Fundamentos de Programação, Trabalho Final - TF
 
     Feito por: 
-    Membro  membro1 = new membro {"Vinicius Quintian", 24105104}
-    Membro  membro2 = new membro{"Augusto Kulzer", 24102883.}
-    Membro  membro3 = new membro{"Lucas Leuck", 24104162.}
+    Membro  membro1 = new Membro {"Vinicius Quintian", 24105104}
+    Membro  membro2 = new Membro{"Augusto Kulzer", 24102883.}
+    Membro  membro3 = new Membro{"Lucas Leuck", 24104162.}
 
   ### A aplicação para o Clube de Compartilhamento de Bicicletas de Porto Alegre é um sistema para gerenciar empréstimos de bicicletas. Ele facilita a administração dos membros e das bicicletas disponíveis. Turistas e moradores de Porto Alegre podem se registrar como membros, emprestar bicicletas e devolvê-las ao final do uso. O sistema oferece uma experiência eficiente e agradável, simplificando o processo de empréstimo e devolução de bicicletas utilizando um menu interativo com as seguintes opções:
          
